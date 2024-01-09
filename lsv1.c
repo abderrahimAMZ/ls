@@ -1,5 +1,5 @@
 /*
-* we will try to print current directory's content if no argument is passed
+* we will try to print current directory's content if no argument is passed and supports multiple dir inputs
 */
 
 
@@ -24,18 +24,14 @@ int main(int argc, char *argv[])
 		reads_directory_and_prints_its_content(".");
 		exit(0);
 	}
+	int i = 1;
 
-
-	if ( argc != 2) {
-		perror("Enter exactly one path argument\n");
-		exit(0);
+	// we iterate through the arguments and print their content
+	while (argv[i] != NULL) {
+		printf("%s:\n", argv[i]);
+		reads_directory_and_prints_its_content(argv[i]);
+		i++;	
 	}
-	
-
-	reads_directory_and_prints_its_content(argv[1]);
-
-	
-
 
 	return EXIT_SUCCESS;
 }
