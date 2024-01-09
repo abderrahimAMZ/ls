@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <dirent.h>
+#include <unistd.h>
+#include <sys/stat.h>
 
 void reads_directory_and_prints_its_content(char *path);
 
@@ -14,8 +16,8 @@ extern int errno;
 int main(int argc, char *argv[])
 {
 	
-	if ( argc == 1) {
-		perror("Path isn't provided\n");
+	if ( argc != 2) {
+		perror("Enter exactly one path argument\n");
 		exit(0);
 	}
 	
@@ -49,6 +51,8 @@ void reads_directory_and_prints_its_content(char *path) {
 			perror("Invalid directory stream descriptor\n");
 			exit(0);
 		}
+		perror("Error reading directory\n");
+		exit(0);
 	}	
 	while (entry != NULL) {
 		printf("%s\n", entry->d_name);
