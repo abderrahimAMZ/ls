@@ -1,5 +1,5 @@
 /*
-* This program reads a directory and prints its content
+* we will try to print current directory's content if no argument is passed
 */
 
 
@@ -19,11 +19,19 @@ extern int errno;
 int main(int argc, char *argv[])
 {
 	
+	// if no argument is passed, print current directory's content
+	if ( argc == 1) {
+		reads_directory_and_prints_its_content(".");
+		exit(0);
+	}
+
+
 	if ( argc != 2) {
 		perror("Enter exactly one path argument\n");
 		exit(0);
 	}
 	
+
 	reads_directory_and_prints_its_content(argv[1]);
 
 	
